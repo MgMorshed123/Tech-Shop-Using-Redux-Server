@@ -14,6 +14,8 @@ import {
 import { Button } from './ui/button';
 import { IProduct } from '@/types/globalTypes';
 import { useAppSelector } from '@/redux/hooks';
+import { addToCart, removeFromCart } from '@/redux/feaured/Cart/CartSlice';
+import { useDispatch } from 'react-redux';
 
 export default function Cart() {
 
@@ -21,7 +23,7 @@ export default function Cart() {
 
   const {products} = useAppSelector((state) => state.cart)
 
-
+  const dispatch = useDispatch()
 
   //! Dummy data
 
@@ -66,13 +68,15 @@ export default function Cart() {
                 </p>
               </div>
               <div className="border-l pl-5 flex flex-col justify-between">
-                <Button>
+                <Button onClick={() => dispatch(addToCart(product))}>
                   <HiOutlinePlus size="20" />
                 </Button>
-                <Button>
+                <Button >
                   <HiMinus size="20" />
                 </Button>
-                <Button
+
+                
+                <Button onClick={ () => dispatch(removeFromCart(product))   }
                   variant="destructive"
                   className="bg-red-500 hover:bg-red-400"
                 >
