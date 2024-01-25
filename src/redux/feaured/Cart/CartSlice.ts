@@ -3,6 +3,7 @@ import { IProduct } from '@/types/globalTypes'
 import {createSlice}  from '@reduxjs/toolkit';
 import type  {PayloadAction} from "@reduxjs/toolkit"
 
+
  interface ICart {
     products : IProduct[]
     total : number;
@@ -15,6 +16,7 @@ import type  {PayloadAction} from "@reduxjs/toolkit"
     products: [],
     total : 0,
 
+
 }
 
 
@@ -23,7 +25,7 @@ import type  {PayloadAction} from "@reduxjs/toolkit"
     initialState,
 
     reducers : {
-
+        
         addToCart : (state, action : PayloadAction<IProduct>) => {
             const existing = state.products.find((product) => product._id === action.payload._id)
              if(existing){
