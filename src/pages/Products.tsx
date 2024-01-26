@@ -3,6 +3,7 @@ import { Label } from '@/components/ui/label';
 import { Slider } from '@/components/ui/slider';
 import { Switch } from '@/components/ui/switch';
 import { useToast } from '@/components/ui/use-toast';
+import { useGetProductsQuery } from '@/redux/api/apiSlice';
 import { setPriceRange, toggleState } from '@/redux/feaured/Products/productsSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { IProduct } from '@/types/globalTypes';
@@ -11,14 +12,23 @@ import { useEffect, useState } from 'react';
 
 
 export default function Products() {
-  const [data, setData] = useState<IProduct[]>([]);
+
+  
+  // const [data, setData] = useState<IProduct[]>([]);
+
+
+/* 
   useEffect(() => {
     fetch('./data.json')
       .then((res) => res.json())
       .then((data) => setData(data));
-  }, []);
+  }, []); 
+  
+*/
 
   const dispatch = useAppDispatch()
+
+  const {data , isLoading} = useGetProductsQuery(undefined)
 
   const { toast } = useToast();
 
